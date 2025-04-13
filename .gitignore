@@ -59,7 +59,7 @@ coverage
 .vscode/
 *.code-workspace
 *.sln.docstates
-
+.vs/
 # ========================
 # 系統產生檔案
 # ========================

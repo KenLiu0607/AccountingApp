@@ -1,6 +1,13 @@
+using Microsoft.EntityFrameworkCore;
+using Server.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+// 註冊 DbContext，並配置資料庫連接字串
+builder.Services.AddDbContext<AccountingappContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
