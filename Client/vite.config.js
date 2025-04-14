@@ -15,4 +15,13 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  server:{
+    proxy: {
+      '/api': {
+        target: 'https://localhost:44351', // 目標 API 的 URL
+        changeOrigin: true,
+        secure: false, // 如果是 HTTPS，則設置為 false
+      },
+    },
+  }
 })

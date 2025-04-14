@@ -4,8 +4,8 @@ using Server.Models;  // 引用模型命名空間
 
 namespace AccountingApp.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class AccountingController : ControllerBase
     {
         private readonly AccountingappContext _context;
@@ -17,22 +17,22 @@ namespace AccountingApp.Controllers
         }
 
         // 取得所有交易資料
-        [HttpGet("transactions")]
+        [HttpGet("Transactions")]
         public async Task<ActionResult<IEnumerable<Transaction>>> GetTransactions()
         {
             return await _context.Transactions.ToListAsync();
         }
 
         // 取得所有分類資料
-        [HttpGet("categories")]
+        [HttpGet("Categories")]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
             return await _context.Categories.ToListAsync();
         }
 
         // 取得指定的交易資料
-        [HttpGet("transaction/{id}")]
-        public async Task<ActionResult<Transaction>> GetTransaction(int id)
+        [HttpGet("Transactions/{id}")]
+        public async Task<IActionResult> GetTransactions(int id)
         {
             var transaction = await _context.Transactions.FindAsync(id);
 
@@ -41,12 +41,12 @@ namespace AccountingApp.Controllers
                 return NotFound();
             }
 
-            return transaction;
+            return Ok(transaction);
         }
 
         // 取得指定的分類資料
-        [HttpGet("category/{id}")]
-        public async Task<ActionResult<Category>> GetCategory(int id)
+        [HttpGet("Categories/{id}")]
+        public async Task<ActionResult<Category>> GetCategories(int id)
         {
             var category = await _context.Categories.FindAsync(id);
 
