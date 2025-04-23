@@ -24,8 +24,8 @@
 
     async function getTransactions() {
         try {
-            const result = await axios.get("/api/Accounting/Transactions");
-            console.log(result.data);
+            // const result = await axios.get("/api/Accounting/Transactions");
+            // console.log(result.data);
         } catch (err) {
             console.error(err);
             return null;

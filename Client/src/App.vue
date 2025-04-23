@@ -2,6 +2,23 @@
     import HelloWorld from "./components/HelloWorld.vue";
     import TheWelcome from "./components/TheWelcome.vue";
     import AiChatInput from "./components/AiChatInput.vue";
+    import DateInput from "./components/DateInput.vue";
+    import DateRangeInput from "./components/DateRangeInput.vue"; // 新增組件匯入
+
+    import { ref } from "vue";
+
+    const selectedDate = ref("");
+    const selectedDateRange = ref({ startDate: "", endDate: "" });
+
+    function handleDateChange(date) {
+        selectedDate.value = date;
+        console.log("選擇的日期是：", date);
+    }
+
+    function handleDateRangeChange(dateRange) {
+        selectedDateRange.value = dateRange;
+        console.log("選擇的日期範圍是：", dateRange);
+    }
 </script>
 
 <template>
@@ -16,6 +33,12 @@
     <main>
         <!-- <TheWelcome /> -->
         <AiChatInput />
+        <DateInput @update:date="handleDateChange" />
+        <p v-if="selectedDate">您選擇的日期是：{{ selectedDate }}</p>
+        <DateRangeInput @update:dateRange="handleDateRangeChange" /> <!-- 新增日期範圍選擇器 -->
+        <p v-if="selectedDateRange.startDate && selectedDateRange.endDate" style="color:aliceblue">
+            您選擇的日期範圍是：{{ selectedDateRange.startDate }} 至 {{ selectedDateRange.endDate }}
+        </p>
     </main>
 </template>
 
